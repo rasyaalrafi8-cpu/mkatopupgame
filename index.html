@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ProdukTerpercaya</title>
+    <title>Produk Terpercaya</title>
     <style>
         * {
             margin: 0;
@@ -147,6 +147,125 @@
             color: #FFD700;
         }
 
+        /* Payment Section Styles */
+        .payment-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            color: #333;
+            text-align: center;
+        }
+
+        .payment-title {
+            color: #1E3A8A;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .payment-toggle {
+            background: linear-gradient(to right, #1E3A8A, #3B82F6);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 8px rgba(30, 58, 138, 0.4);
+            margin-bottom: 20px;
+        }
+
+        .payment-toggle:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(30, 58, 138, 0.6);
+        }
+
+        .payment-methods {
+            display: none;
+            margin-top: 20px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .payment-method {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            border-left: 4px solid #FFD700;
+        }
+
+        .payment-method h3 {
+            color: #1E3A8A;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .payment-method h3 i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+
+        .payment-number {
+            background: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .copy-btn {
+            background: #1E3A8A;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: #3B82F6;
+        }
+
+        .qris-section {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .qris-image {
+            max-width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            margin: 15px 0;
+        }
+
+        .download-btn {
+            background: linear-gradient(to right, #FFD700, #FFA500);
+            color: #1E3A8A;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+            box-shadow: 0 3px 8px rgba(255, 215, 0, 0.4);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.6);
+        }
+
         footer {
             background: rgba(30, 58, 138, 0.9);
             color: white;
@@ -174,13 +293,18 @@
             h1 {
                 font-size: 2rem;
             }
+            
+            .payment-method {
+                padding: 15px;
+            }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>Produk Digital</h1>
+            <h1>Produk Digital Aman Dan Terpercaya</h1>
             <p class="tagline"></p>
         </div>
     </header>
@@ -211,7 +335,7 @@
             <div class="product-card">
                 <img src="https://img1.pixhost.to/images/10158/660835857_awang.jpg" alt="Produk 3D 3" class="product-image">
                 <div class="product-info">
-                    <h3 class="product-title">Produk 3</h3>
+                    <h3 class="product-title">Produk  3</h3>
                     <p class="product-description"></p>
                     <button class="btn view-btn" data-image="https://img1.pixhost.to/images/10158/660835857_awang.jpg">Click Foto</button>
                 </div>
@@ -237,6 +361,65 @@
                 </div>
             </div>
         </div>
+
+        <!-- Payment Section -->
+        <section class="payment-section">
+            <h2 class="payment-title">Metode Pembayaran</h2>
+            <button class="payment-toggle" id="paymentToggle">
+                <i class="fas fa-credit-card"></i> Klik untuk Melihat Payment
+            </button>
+            
+            <div class="payment-methods" id="paymentMethods">
+                <!-- DANA -->
+                <div class="payment-method">
+                    <h3><i class="fab fa-cc-dana" style="color: #00a3e8;"></i> DANA</h3>
+                    <p>Transfer ke nomor DANA berikut:</p>
+                    <div class="payment-number">
+                        <span id="danaNumber">085709558962</span>
+                        <button class="copy-btn" data-number="085709558962">
+                            <i class="fas fa-copy"></i> Salin
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- GOPAY -->
+                <div class="payment-method">
+                    <h3><i class="fab fa-cc-gojek" style="color: #00aa13;"></i> GOPAY</h3>
+                    <p>Transfer ke nomor GOPAY berikut:</p>
+                    <div class="payment-number">
+                        <span id="gopayNumber">085709558962</span>
+                        <button class="copy-btn" data-number="085709558962">
+                            <i class="fas fa-copy"></i> Salin
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- OVO -->
+                <div class="payment-method">
+                    <h3><i class="fab fa-cc-ovo" style="color: #4c2a8c;"></i> OVO</h3>
+                    <p>Transfer ke nomor OVO berikut:</p>
+                    <div class="payment-number">
+                        <span id="ovoNumber">085709558962</span>
+                        <button class="copy-btn" data-number="085709558962">
+                            <i class="fas fa-copy"></i> Salin
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- QRIS -->
+                <div class="payment-method">
+                    <h3><i class="fas fa-qrcode" style="color: #000;"></i> QRIS</h3>
+                    <p>Scan QR Code berikut untuk pembayaran:</p>
+                    <div class="qris-section">
+                        <img src="https://files.catbox.moe/wj8urz.jpg" alt="QRIS Payment" class="qris-image">
+                        <br>
+                        <a href="https://files.catbox.moe/wj8urz.jpg" download="qris-payment.jpg" class="download-btn">
+                            <i class="fas fa-download"></i> Download QRIS
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
     <!-- Modal untuk menampilkan gambar besar -->
@@ -271,6 +454,34 @@
             if (e.target === this) {
                 this.style.display = 'none';
             }
+        });
+
+        // Toggle Payment Methods
+        document.getElementById('paymentToggle').addEventListener('click', function() {
+            const paymentMethods = document.getElementById('paymentMethods');
+            if (paymentMethods.style.display === 'block') {
+                paymentMethods.style.display = 'none';
+                this.innerHTML = '<i class="fas fa-credit-card"></i> Klik untuk Melihat Payment';
+            } else {
+                paymentMethods.style.display = 'block';
+                this.innerHTML = '<i class="fas fa-eye-slash"></i> Sembunyikan Payment';
+            }
+        });
+
+        // Copy Payment Number
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const number = this.getAttribute('data-number');
+                navigator.clipboard.writeText(number).then(() => {
+                    // Ubah teks tombol sementara
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-check"></i> Tersalin!';
+                    
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                    }, 2000);
+                });
+            });
         });
     </script>
 </body>
